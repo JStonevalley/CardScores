@@ -1,0 +1,15 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ],
+    "compilerOptions": {
+        "noImplicitAny": true,
+        "moduleResolution": "node",
+        "module": "commonjs",
+        "target": "es2015"
+    }
+}
