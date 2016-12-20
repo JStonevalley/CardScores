@@ -24,10 +24,22 @@ export default class User {
     return new User(this.id, this.email, this.name, gamesToUpdate)
   }
 
-  totalScore () {
+  totalScore (type: string) {
     let totalscore = 0
-    this.games.forEach((game: Game) => totalscore += game.getPlayer(this.id).getTotalScore())
+    this.games.forEach((game: Game) => totalscore += game.type === type ? game.getPlayer(this.id).getTotalScore() : 0)
     return totalscore
+  }
+
+  averageScore (type: string) {
+    let totalscore = 0
+    let numberOfRounds = 0
+    this.games.forEach((game: Game) => {
+      console.log(game.getPlayerUserId(this.id).rounds)
+      numberOfRounds += game.type === type ? game.getPlayerUserId(this.id).rounds.length : 0
+      totalscore += game.type === type ? game.getPlayerUserId(this.id).getTotalScore() : 0
+      console.log(totalscore, numberOfRounds)
+    })
+    return totalscore/numberOfRounds
   }
 
   static newUser(email: string, name: string) : User {

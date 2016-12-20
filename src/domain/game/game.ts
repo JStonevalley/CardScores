@@ -39,6 +39,12 @@ export default class Game {
     })
   }
 
+  getPlayerUserId (userId: string): Player {
+    return this.players.find((player: Player) => {
+      return player.userId === userId
+    })
+  }
+
   static NewGame(name: string, type: string, users: User[], numRounds: number): Game {
     const players = users.map((user) => {
       return Player.newPlayer(user.id, user.name, numRounds)

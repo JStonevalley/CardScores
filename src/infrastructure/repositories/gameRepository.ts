@@ -1,6 +1,7 @@
 import Game, {GameType} from '../../domain/game/game'
 import {GameModel, IGameModel} from './gameModel'
 import PlayerRepository from './playerRepository'
+import UserRepository from './userRepository'
 import {model} from 'mongoose'
 
 class GameRepository {

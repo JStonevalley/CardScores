@@ -14,6 +14,12 @@ export class UserRouter {
     userController.getUserByEmail(email).then((user: User) => res.json(user))
   }
 
+  public averageScore(req: Request, res: Response, next: NextFunction) {
+    const email = req.params.email as string
+    const type = req.params.type as string
+    userController.getUserByEmail(email).then((user: User) => res.json(user.averageScore(type)))
+  }
+
   public createUser(req: Request, res: Response, next: NextFunction) {
     const email: string = req.body.email as string
     const name: string = req.body.name as string
@@ -32,6 +38,7 @@ export class UserRouter {
 
   init() {
     this.router.get('/:email', this.getUser);
+    this.router.get('/averageScore/:email/:type', this.averageScore);
     this.router.post('/', this.createUser);
   }
 

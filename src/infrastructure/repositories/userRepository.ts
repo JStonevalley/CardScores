@@ -23,9 +23,7 @@ class UserRepository {
       }),
       date: user.date
     })
-    return Promise.all(games.map(this.gameRepository.save)).then(() => {
-      return userModel.save().then(() => user).catch(console.error)
-    })
+    return userModel.save().then(() => user).catch(console.error)
   }
 
   fetchByEmail(email: string): Promise<User> {
@@ -37,7 +35,7 @@ class UserRepository {
   }
 
   fetch(ids: string, type: string = 'id'): Promise<User> {
-    return this.fetchMany([ids], 'email').then((games) => {
+    return this.fetchMany([ids], type).then((games) => {
       return games.length === 1 ? games.pop() : null
     })
   }
