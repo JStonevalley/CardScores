@@ -46,6 +46,7 @@ export default class Game {
   }
 
   static NewGame(name: string, type: string, users: User[], numRounds: number): Game {
+    console.log('NewGame', typeof numRounds)
     const players = users.map((user) => {
       return Player.newPlayer(user.id, user.name, numRounds)
     })

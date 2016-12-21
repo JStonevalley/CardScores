@@ -9,6 +9,7 @@ const userRepository = new UserRepository()
 
 export const createGame = (name: string, type: string, userEmails: string[], numRounds: number): Promise<Game> => {
   return userController.getUsersByEmail(userEmails).then((users: User[]) => {
+    console.log('createGame', typeof numRounds)
     const game = Game.NewGame(name, type, users, numRounds)
     return Promise.all(game.players.map((player) => {
       userRepository.fetchById(player.userId).then((user) => {
@@ -24,4 +25,8 @@ export const registerScore = (gameId : string, playerId: string, round: number, 
     const next = game.addRoundScore(playerId, round, score)
     return gameRepository.save(next).then(() => next)
   })
+}
+
+export const fetchGame = (gameId : string): Promise<Game> => {
+  return gameRepository.fetch(gameId)
 }

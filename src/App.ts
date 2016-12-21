@@ -32,11 +32,11 @@ class App {
      * API endpoints */
     let router = express.Router();
     // placeholder route handler
-    router.get('/', (req, res, next) => {
-      res.json({
-        message: 'Hello World!'
-      });
-    });
+    this.express.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next()
+    })
     this.express.use('/', router);
     this.express.use('/api/v1/users', UserRouter);
     this.express.use('/api/v1/games', GameRouter);

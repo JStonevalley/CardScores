@@ -26,6 +26,8 @@ export default class Player {
   }
 
   static newPlayer (userId: string, name: string, numRounds: number) : Player {
-    return new Player(UUID(), userId, name, new Array<number>(numRounds).fill(0))
+    const rounds = new Array<number>(numRounds)
+    rounds.fill(0)
+    return new Player(UUID(), userId, name, rounds)
   }
 }
